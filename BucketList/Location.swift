@@ -13,14 +13,14 @@ struct Location: Identifiable, Equatable {
         lhs.id == rhs.id
     }
     
-    static let example = Location(id: UUID(), name: "Example Location", description: "Description of an Example Location", latitude: 50, longtitude: 30)
+    static let example = Location(id: UUID(), name: "Example Location", description: "Description of an Example Location", latitude: 50, longitude: 30)
     
     var id: UUID
     var name: String
     var description: String
     let latitude: Double
-    let longtitude: Double
+    let longitude: Double
     var coordinate: CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: latitude, longitude: longtitude)
+        return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }

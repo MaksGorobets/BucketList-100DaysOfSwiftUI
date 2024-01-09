@@ -38,7 +38,7 @@ struct MapView: View {
             }
             .onTapGesture { place in
                 if let coordinate = proxy.convert(place, from: .local) {
-                    let locationToSave = Location(id: UUID(), name: "New locaiton", description: "", latitude: coordinate.latitude, longtitude: coordinate.longitude)
+                    let locationToSave = Location(id: UUID(), name: "New locaiton", description: "", latitude: coordinate.latitude, longitude: coordinate.longitude)
                     locations.append(locationToSave)
                 }
             }
@@ -49,7 +49,7 @@ struct MapView: View {
                     }
                 })
                     .presentationBackground(.ultraThinMaterial)
-                    .presentationDetents([.medium])
+                    .presentationDetents([.medium, .large])
             }
         }
     }
