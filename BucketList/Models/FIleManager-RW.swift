@@ -23,15 +23,14 @@ extension FileManager {
         }
     }
     
-    func read<T: Codable>(from fileName: String) throws -> T {
+    func read<T: Codable>(from fileName: String, as type: T.Type) throws -> T {
         let url = URL.documentsDirectory.appending(path: "\(fileName).txt")
-        let decoder = JSONDecoder()
         do {
             let data = try Data(contentsOf: url)
-            let decoded = try decoder.decode(T.self, from: data)
-            return decoded
+            let decodedData = try JSONDecoder().decode(T.self, from: data)
+            return decodedData
         } catch {
-            print(error)
+            print("Failed to read data: \(error)")
         }
         throw Errors.readFailure
     }

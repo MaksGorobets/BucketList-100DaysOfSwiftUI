@@ -35,7 +35,7 @@ struct ContentView: View {
         }
         Button("Read file") {
             do {
-                readFile = try FileManager.default.read(from: "user")
+                readFile = try FileManager.default.read(from: "user", as: User.self)
             } catch {
                 
             }

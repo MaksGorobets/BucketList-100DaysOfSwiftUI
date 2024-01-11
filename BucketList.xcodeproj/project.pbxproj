@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		E967DFC12B4DCCDB00FE50C1 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = E967DFC02B4DCCDB00FE50C1 /* Result.swift */; };
+		E984BA082B5051FD000D1E7D /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E984BA072B5051FD000D1E7D /* MapViewModel.swift */; };
+		E984BA0D2B505EC0000D1E7D /* LocationEditorSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E984BA0C2B505EC0000D1E7D /* LocationEditorSheetViewModel.swift */; };
+		E984BA0F2B507DE8000D1E7D /* PinView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E984BA0E2B507DE8000D1E7D /* PinView.swift */; };
+		E984BA112B507E32000D1E7D /* PinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E984BA102B507E32000D1E7D /* PinViewModel.swift */; };
 		E9C130712B4477A0004011E3 /* BucketListApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C130702B4477A0004011E3 /* BucketListApp.swift */; };
 		E9C130732B4477A0004011E3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9C130722B4477A0004011E3 /* ContentView.swift */; };
 		E9C130752B4477A1004011E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9C130742B4477A1004011E3 /* Assets.xcassets */; };
@@ -20,6 +24,10 @@
 
 /* Begin PBXFileReference section */
 		E967DFC02B4DCCDB00FE50C1 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		E984BA072B5051FD000D1E7D /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
+		E984BA0C2B505EC0000D1E7D /* LocationEditorSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEditorSheetViewModel.swift; sourceTree = "<group>"; };
+		E984BA0E2B507DE8000D1E7D /* PinView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinView.swift; sourceTree = "<group>"; };
+		E984BA102B507E32000D1E7D /* PinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewModel.swift; sourceTree = "<group>"; };
 		E9C1306D2B4477A0004011E3 /* BucketList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BucketList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9C130702B4477A0004011E3 /* BucketListApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BucketListApp.swift; sourceTree = "<group>"; };
 		E9C130722B4477A0004011E3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,6 +50,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E984BA092B5059B8000D1E7D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E9C130722B4477A0004011E3 /* ContentView.swift */,
+				E9DDC52E2B4C6EC400821250 /* LocationEditorSheet.swift */,
+				E9DDC52A2B4C675000821250 /* MapView.swift */,
+				E984BA0E2B507DE8000D1E7D /* PinView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		E984BA0A2B5059D1000D1E7D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				E984BA072B5051FD000D1E7D /* MapViewModel.swift */,
+				E984BA0C2B505EC0000D1E7D /* LocationEditorSheetViewModel.swift */,
+				E984BA102B507E32000D1E7D /* PinViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		E984BA0B2B5059F2000D1E7D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E9DDC52C2B4C696D00821250 /* Location.swift */,
+				E967DFC02B4DCCDB00FE50C1 /* Result.swift */,
+				E9C1307E2B4477EA004011E3 /* FIleManager-RW.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		E9C130642B4477A0004011E3 = {
 			isa = PBXGroup;
 			children = (
@@ -61,13 +100,10 @@
 		E9C1306F2B4477A0004011E3 /* BucketList */ = {
 			isa = PBXGroup;
 			children = (
+				E984BA0B2B5059F2000D1E7D /* Models */,
 				E9C130702B4477A0004011E3 /* BucketListApp.swift */,
-				E9C1307E2B4477EA004011E3 /* FIleManager-RW.swift */,
-				E9C130722B4477A0004011E3 /* ContentView.swift */,
-				E9DDC52A2B4C675000821250 /* MapView.swift */,
-				E967DFC02B4DCCDB00FE50C1 /* Result.swift */,
-				E9DDC52E2B4C6EC400821250 /* LocationEditorSheet.swift */,
-				E9DDC52C2B4C696D00821250 /* Location.swift */,
+				E984BA0A2B5059D1000D1E7D /* ViewModels */,
+				E984BA092B5059B8000D1E7D /* Views */,
 				E9C130742B4477A1004011E3 /* Assets.xcassets */,
 				E9C130762B4477A1004011E3 /* Preview Content */,
 			);
@@ -152,13 +188,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E984BA0F2B507DE8000D1E7D /* PinView.swift in Sources */,
 				E9C1307F2B4477EA004011E3 /* FIleManager-RW.swift in Sources */,
 				E9DDC52F2B4C6EC400821250 /* LocationEditorSheet.swift in Sources */,
 				E9DDC52B2B4C675000821250 /* MapView.swift in Sources */,
+				E984BA112B507E32000D1E7D /* PinViewModel.swift in Sources */,
 				E9DDC52D2B4C696D00821250 /* Location.swift in Sources */,
 				E967DFC12B4DCCDB00FE50C1 /* Result.swift in Sources */,
 				E9C130732B4477A0004011E3 /* ContentView.swift in Sources */,
 				E9C130712B4477A0004011E3 /* BucketListApp.swift in Sources */,
+				E984BA0D2B505EC0000D1E7D /* LocationEditorSheetViewModel.swift in Sources */,
+				E984BA082B5051FD000D1E7D /* MapViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +334,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BucketList/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need Face ID to access your places.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -322,6 +363,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"BucketList/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSFaceIDUsageDescription = "We need Face ID to access your places.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
