@@ -19,17 +19,24 @@ extension MapView {
                 span: MKCoordinateSpan(latitudeDelta: 20, longitudeDelta: 20))
         )
         
+        let fileManager = FileManagerStatic.fileManager
+        
         private(set) var locations = [Location]()
         var selectedPlace: Location?
         
         var isUnlocked = false
+        var isShowingAlert = false
+        var alertMessage = ""
+        var alertAdditionalInfo = ""
+        
+        private(set) var mapStyle: MapStyle = .standard
         
 //        let savePath = URL.documentsDirectory.appending(path: "SavedPlaces")
         
         init() {
             authenticate()
             do {
-                locations = try FileManager().read(from: "SavedPlaces", as: [Location].self)
+                locations = try fileManager.read(from: "SavedPlaces", as: [Location].self)
             } catch {
                 print("Read error \(error)")
             }
@@ -42,8 +49,20 @@ extension MapView {
 //            }
         }
         
+        func setMapStyle(style: MapStyle) {
+            mapStyle = style
+        }
+        
+        func alertUser(_ message: String, additionalInfo: String?) {
+            alertMessage = message
+            if let info = additionalInfo {
+                alertAdditionalInfo = info
+            }
+            isShowingAlert = true
+        }
+        
         func save() {
-            FileManager().write(object: locations, to: "SavedPlaces")
+            fileManager.write(object: locations, to: "SavedPlaces")
 //            do {
 //                let json = try JSONEncoder().encode(locations)
 //                try json.write(to: savePath, options: [.atomic, .completeFileProtection])
@@ -65,6 +84,14 @@ extension MapView {
             }
         }
         
+        func deleteLocation(place: Location) {
+            if let index = locations.firstIndex(of: place) {
+                print("Removing...")
+                locations.remove(at: index)
+                save()
+            }
+        }
+        
         func authenticate() {
             let context = LAContext()
             var error: NSError?
@@ -74,7 +101,8 @@ extension MapView {
                     if success {
                         self.isUnlocked = true
                     } else {
-                        print(error ?? "Unknown error.")
+                        print("Showing alert...")
+                        self.alertUser("Error during authentication", additionalInfo: error?.localizedDescription)
                     }
                 }
             }

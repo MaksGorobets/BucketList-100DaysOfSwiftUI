@@ -14,38 +14,64 @@ struct MapView: View {
     
     var body: some View {
         if viewModel.isUnlocked {
-            MapReader { proxy in
-                Map(initialPosition: MapView.ViewModel.startingRegion) {
-                    ForEach(viewModel.locations) { location in
-                        Annotation(location.name, coordinate: location.coordinate) {
-                            Image(systemName: "bookmark.circle")
-                                .resizable()
-                                .frame(width: 30, height: 30)
-                                .foregroundStyle(.blue)
-                                .background(.white)
-                                .clipShape(.circle)
-                                .onLongPressGesture {
-                                    viewModel.selectedPlace = location
-                                }
+            ZStack(alignment: .bottomTrailing) {
+                MapReader { proxy in
+                    Map(initialPosition: MapView.ViewModel.startingRegion) {
+                        ForEach(viewModel.locations) { location in
+                            Annotation(location.name, coordinate: location.coordinate) {
+                                Image(systemName: "bookmark.circle")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundStyle(.blue)
+                                    .background(.white)
+                                    .clipShape(.circle)
+                                    .onLongPressGesture {
+                                        viewModel.selectedPlace = location
+                                    }
+                            }
                         }
                     }
-                }
-                .onTapGesture { place in
-                    if let coordinate = proxy.convert(place, from: .local) {
-                        viewModel.saveLocation(coordinate: coordinate)
+                    .mapStyle(viewModel.mapStyle)
+                    .onTapGesture { place in
+                        if let coordinate = proxy.convert(place, from: .local) {
+                            viewModel.saveLocation(coordinate: coordinate)
+                        }
+                    }
+                    .sheet(item: $viewModel.selectedPlace) { place in
+                        LocationEditorSheet(location: place, onSave: { newLocation, isDeleting in
+                            print("Got a request for \(isDeleting ? "deletion" : "update").")
+                            if isDeleting {
+                                viewModel.deleteLocation(place: newLocation)
+                            } else {
+                                viewModel.updateLocation(place: place, newLocation: newLocation)
+                            }
+                        })
+                        .presentationBackground(.ultraThinMaterial)
+                        .presentationDetents([.medium, .large])
+                    }
+                    .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
+                        Text(viewModel.alertAdditionalInfo)
+                        Button("OK") { }
                     }
                 }
-                .sheet(item: $viewModel.selectedPlace) { place in
-                    LocationEditorSheet(location: place, onSave: { newLocation in
-                        viewModel.updateLocation(place: place, newLocation: newLocation)
-                    })
-                    .presentationBackground(.ultraThinMaterial)
-                    .presentationDetents([.medium, .large])
+// BUTTONS
+                Menu {
+                    Button("Hybrid") { viewModel.setMapStyle(style: .hybrid) }
+                    Button("Standard") { viewModel.setMapStyle(style: .standard) }
+                } label: {
+                    RoundedRectangle(cornerRadius: 20.0)
+                        .frame(width: 75, height: 75)
+                        .foregroundStyle(.thinMaterial)
+                        .overlay (
+                            Image(systemName: "square.2.layers.3d")
+                                .font(.system(size: 30))
+                        )
                 }
+                .padding()
             }
         } else {
             PinView(viewModel: viewModel)
-            Button("Authenticate", action: viewModel.authenticate)
+            Button("Use biometrics", action: viewModel.authenticate)
                 .font(.system(size: 20))
                 .buttonStyle(.bordered)
                 .padding(.vertical)

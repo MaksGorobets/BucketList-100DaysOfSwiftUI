@@ -20,6 +20,7 @@
 		E9DDC52B2B4C675000821250 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DDC52A2B4C675000821250 /* MapView.swift */; };
 		E9DDC52D2B4C696D00821250 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DDC52C2B4C696D00821250 /* Location.swift */; };
 		E9DDC52F2B4C6EC400821250 /* LocationEditorSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9DDC52E2B4C6EC400821250 /* LocationEditorSheet.swift */; };
+		E9E2BBBE2B51B49B001DF23D /* FileManagerStatic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E2BBBD2B51B49B001DF23D /* FileManagerStatic.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		E9DDC52A2B4C675000821250 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		E9DDC52C2B4C696D00821250 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		E9DDC52E2B4C6EC400821250 /* LocationEditorSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationEditorSheet.swift; sourceTree = "<group>"; };
+		E9E2BBBD2B51B49B001DF23D /* FileManagerStatic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManagerStatic.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 				E9DDC52C2B4C696D00821250 /* Location.swift */,
 				E967DFC02B4DCCDB00FE50C1 /* Result.swift */,
 				E9C1307E2B4477EA004011E3 /* FIleManager-RW.swift */,
+				E9E2BBBD2B51B49B001DF23D /* FileManagerStatic.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				E967DFC12B4DCCDB00FE50C1 /* Result.swift in Sources */,
 				E9C130732B4477A0004011E3 /* ContentView.swift in Sources */,
 				E9C130712B4477A0004011E3 /* BucketListApp.swift in Sources */,
+				E9E2BBBE2B51B49B001DF23D /* FileManagerStatic.swift in Sources */,
 				E984BA0D2B505EC0000D1E7D /* LocationEditorSheetViewModel.swift in Sources */,
 				E984BA082B5051FD000D1E7D /* MapViewModel.swift in Sources */,
 			);

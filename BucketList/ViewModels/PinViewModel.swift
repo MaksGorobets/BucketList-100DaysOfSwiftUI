@@ -12,9 +12,17 @@ extension PinView {
     @Observable
     final class ViewModel {
         
+        let fileManager = FileManagerStatic.fileManager
+        
         let viewModel: MapView.ViewModel
         
         var isPinSet = false
+        
+        var currentNumbers = [Int]()
+        var rightCombo = [Int]()
+        
+        var isShowingAlert = false
+        var alertMessage = ""
         
         var pressNum = 0 { didSet {
             print("Press num is \(pressNum)")
@@ -30,14 +38,7 @@ extension PinView {
                     }
                 }
             }
-        }
-            
-        }
-        var currentNumbers = [Int]()
-        var rightCombo = [Int]()
-        
-        var isShowingAlert = false
-        var alertMessage = ""
+        }}
         
         func savePin() {
             print("Saving a new pin \(currentNumbers)")
@@ -54,11 +55,15 @@ extension PinView {
         func setPin() {
             rightCombo = currentNumbers
             savePin()
-            alertMessage = "Success!"
-            isShowingAlert = true
+            alertUser("Success!")
             currentNumbers.removeAll()
             isPinSet = true
             UserDefaults.standard.setValue(isPinSet, forKey: "Pin")
+        }
+        
+        func alertUser(_ message: String) {
+            alertMessage = message
+            isShowingAlert = true
         }
         
         func unlock() {
@@ -67,8 +72,7 @@ extension PinView {
         }
         
         func wrongPin() {
-            alertMessage = "Wrong PIN!"
-            isShowingAlert = true
+            alertUser("Wrong PIN!")
         }
         
         func resetPinField() {
@@ -81,7 +85,7 @@ extension PinView {
             self.viewModel = viewModel
             self.isPinSet = defaults.object(forKey: "Pin") as? Bool ?? false
             do {
-                self.rightCombo = try FileManager().read(from: "PinCombo", as: [Int].self)
+                self.rightCombo = try fileManager.read(from: "PinCombo", as: [Int].self)
             } catch {
                 print(error)
             }

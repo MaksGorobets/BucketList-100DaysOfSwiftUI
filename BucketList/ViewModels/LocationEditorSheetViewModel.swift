@@ -10,17 +10,21 @@ import Foundation
 extension LocationEditorSheet {
     @Observable
     final class ViewModel {
+        
         var location: Location
         
         var name: String
         var description: String
         
-        let onSave: (Location) -> Void
+        let onSave: (Location, Bool) -> Void
+        
+        var isShowingAlert = false
+        var alertMessage = ""
         
         var loadingState = LoadingState.loading
         var pages = [Page]()
         
-        init(location: Location, onSave: @escaping (Location) -> Void) {
+        init(location: Location, onSave: @escaping (Location, Bool) -> Void) {
             self.location = location
             name = location.name
             description = location.description
@@ -34,7 +38,16 @@ extension LocationEditorSheet {
             newLocation.name = name
             newLocation.description = description
             
-            onSave(newLocation)
+            onSave(newLocation, false)
+        }
+        
+        func deleteCurrentLocation() {
+            onSave(location, true)
+        }
+        
+        func alertUser(_ message: String) {
+            alertMessage = message
+            isShowingAlert = true
         }
         
         func fetchData() async {

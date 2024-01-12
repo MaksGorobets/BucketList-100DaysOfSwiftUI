@@ -74,8 +74,22 @@ struct LocationEditorSheet: View {
             }
             .padding()
             .toolbar {
-                Button("Save") {
-                    viewModel.saveChanges()
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Save") {
+                        viewModel.saveChanges()
+                        dismiss()
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Delete", role: .destructive) {
+                        viewModel.alertUser("Are you sure you want to delete \"\(viewModel.location.name)\"?")
+                    }
+                    .foregroundStyle(.red)
+                }
+            }
+            .alert(viewModel.alertMessage, isPresented: $viewModel.isShowingAlert) {
+                Button("Delete", role: .destructive) {
+                    viewModel.deleteCurrentLocation()
                     dismiss()
                 }
             }
@@ -87,11 +101,11 @@ struct LocationEditorSheet: View {
         }
     }
     
-    init(location: Location, onSave: @escaping (Location) -> Void) {
+    init(location: Location, onSave: @escaping (Location, Bool) -> Void) {
         self.viewModel = ViewModel(location: location, onSave: onSave)
     }
 }
 
 #Preview {
-    LocationEditorSheet(location: .example, onSave: { _ in })
+    LocationEditorSheet(location: .example, onSave: { _, _ in })
 }
