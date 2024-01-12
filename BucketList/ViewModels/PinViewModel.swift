@@ -46,10 +46,17 @@ extension PinView {
         }
         
         func createButton(_ number: Int, _ action: @escaping () -> Void) -> some View {
-            Button(String(number + 1), action: action)
-                .buttonStyle(.bordered)
-                .clipShape(.circle)
-                .font(.system(size: 50))
+            Button {
+                action()
+            } label: {
+                RoundedRectangle(cornerRadius: 20)
+                    .foregroundStyle(Color(.pinPadButton))
+                    .overlay (
+                        Text(String(number + 1))
+                    )
+            }
+            .frame(width: 75, height: 75)
+            .buttonStyle(.plain)
         }
         
         func setPin() {

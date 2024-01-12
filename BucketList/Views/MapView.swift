@@ -54,7 +54,7 @@ struct MapView: View {
                         Button("OK") { }
                     }
                 }
-// BUTTONS
+                // BUTTONS
                 Menu {
                     Button("Hybrid") { viewModel.setMapStyle(style: .hybrid) }
                     Button("Standard") { viewModel.setMapStyle(style: .standard) }
@@ -71,10 +71,18 @@ struct MapView: View {
             }
         } else {
             PinView(viewModel: viewModel)
-            Button("Use biometrics", action: viewModel.authenticate)
-                .font(.system(size: 20))
-                .buttonStyle(.bordered)
-                .padding(.vertical)
+            Button {
+                viewModel.authenticate()
+            } label: {
+                RoundedRectangle(cornerRadius: 15)
+                    .foregroundStyle(Color.pinPadButton)
+                    .overlay(
+                        Text("Use biometrics")
+                    )
+            }
+            .frame(width: 200, height: 50)
+            .padding(.vertical)
+            .buttonStyle(.plain)
         }
     }
 }

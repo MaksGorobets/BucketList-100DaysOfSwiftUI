@@ -15,6 +15,7 @@ struct PinView: View {
         
         RoundedRectangle(cornerRadius: 10)
             .stroke(.primary)
+            .opacity(0.8)
             .frame(width: 175, height: 50)
             .padding(.vertical)
             .overlay (
